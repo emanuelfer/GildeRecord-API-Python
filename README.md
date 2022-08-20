@@ -35,5 +35,50 @@ while gr.next():
     print(gr.number)
 
 ```
+  
+  
+Atualizando registros de uma tabela
+ 
+```python
+  
+from GlideRecord import *
+
+gr = GlideRecord("incident")
+
+gr.set_server("https://instance.service-now.com")
+gr.set_credentials(user, password)
+
+gr.addQuery('number', 'INC0000051')
+gr.query()
+
+if gr.next():
+    gr.short_description = "Sem conexão de internet!"
+    gr.update()
+
+```
+  
+Criando um novo incident
+ 
+```python
+  
+from GlideRecord import *
+
+gr = GlideRecord("incident")
+
+gr.set_server("https://dev81975.service-now.com")
+gr.set_credentials(user, password)
+
+gr.initialize()
+
+gr.short_description = "Computador reiniciando sozinho!"
+gr.category = "hardware"
+gr.impact = 1
+gr.urgency = 1
+
+gr.insert()
+
+```
+  
+
 </p>
   
