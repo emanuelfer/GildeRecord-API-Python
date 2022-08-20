@@ -11,4 +11,25 @@
   <li>Atualizar registros</li>
   <li>Deletar registros únicos ou todos os registros filtrados</li>
  <ul>
+  
+  <hr></hr>
+  
+  <p> Seguem alguns exemplos de como utilizar as funções: </p>
+  
+  ```
+from GlideRecord import *
+
+gr = GlideRecord("incident")
+
+gr.set_server("https://instance.service-now.com")
+gr.set_credentials(user, password)
+
+gr.addQuery('assignment_group.name', 'Hardware')
+gr.query()
+
+while gr.next():
+    print(gr.number)
+
+  ```
+  
  </p>
