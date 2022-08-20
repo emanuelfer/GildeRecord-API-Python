@@ -16,7 +16,7 @@
   
   <p> Seguem alguns exemplos de como utilizar as funções: </p>
   
-  ```
+  ```python
 from GlideRecord import *
 
 gr = GlideRecord("incident")
