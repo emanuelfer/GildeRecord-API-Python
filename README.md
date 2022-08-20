@@ -14,10 +14,13 @@
   
 <hr></hr>
   
-<h4>Seguem alguns exemplos de como utilizar as funções: </h4>
+<h4>Seguem alguns exemplos de como utilizar as funções:</h4>
   
 <p>Lendo registros de uma tabela</p>
+  
+  
 ```python
+  
 from GlideRecord import *
 
 gr = GlideRecord("incident")
