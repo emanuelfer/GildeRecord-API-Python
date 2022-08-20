@@ -2,7 +2,7 @@
 <h1 align="center"> Implementado a API GlideRecord do Servicenow em Python </h1>
 
 <p>
- Uma das principais APIs para quem desenvolve dentro do Servicenow é a GlideRecord. Ele nos permite fazer queries, criar e atualizar registros, além de inúmeras outras funções. Assim, levado pela curiosidade de como seria uma possível implementação dessa classe, resolvi tentar uma implementação bem simplificada utilizando python e como base de dados a minha instância pessoal do Servicenow, consumindo a API REST.
+ Uma das principais APIs para quem desenvolve dentro do Servicenow é a GlideRecord. Ele nos permite fazer queries, criar e atualizar registros, além de inúmeras outras funções. Assim, levado pela curiosidade de como seria uma possível implementação dessa classe, resolvi tentar uma implementação bem simplificada utilizando python e como base de dados a minha instância pessoal do Servicenow, consumindo a API REST.</p>
  
  Com essa implementação, temos as seguintes possibilidades:
  <ul>
@@ -78,7 +78,22 @@ gr.urgency = 1
 gr.insert()
 
 ```
+ 
+ 
+<p>
+Esta é a apenas a primeira versão, ainda existem melhorias a serem feitas e nem todas as funções da API GlideRecord foram implementadas, apenas as principais. Para mais informações sobre a API oficial, segue a documentação:
+ 
+https://developer.servicenow.com/dev.do#!/reference/api/rome/server_legacy/c_GlideRecordAPI#r_GlideRecord-initialize?navFilter=gliderecord
+ 
+Material utilizado como referência:
+https://github.com/bazizi/ServiceNow_GlideRecord_API
+https://github.com/sfu/php-gliderecord/blob/master/src/GlideRecord.php
+ 
+</p>
   
 
-</p>
+
+  
+
+
   
