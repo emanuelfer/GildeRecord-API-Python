@@ -1,11 +1,9 @@
+from typing import overload
 from unittest import result
 import requests
 import base64
 import json
-import re
 import getpass
-import sys
-import time
 
 class GlideRecord:
 
@@ -64,14 +62,27 @@ class GlideRecord:
     def getRowCount(self):
         return len(self.results)
 
-    def get(self, key, value):
-        self.addQuery(key, value)
-        self.setRowCount(1)
-        self.query()
-        
-        if self.getRowCount() == 1:
-            return True
-        return False
+    def get(self, *args):
+        if(len(args) == 1):
+            key = args[0]
+            self.query_data['sysparm_query'] = "sys_id="+key
+            self.query()
+            
+            if self.getRowCount() == 1:
+                return True
+            return False
+
+        else:
+            key = args[0]
+            value = args[1]
+
+            self.addQuery(key, value)
+            self.query_data['limit'] = "1"
+            self.query()
+            
+            if self.getRowCount() > 1:
+                return True
+            return False
 
     def hasNext(self):
         if self.getRowCount() > 0 and self.currentIndex + 1 < self.getRowCount():
@@ -85,15 +96,23 @@ class GlideRecord:
             return True
         return False
 
-    def addQuery(self, key, value=""):
-        self.query_data['sysparm_query'] += key +"=" +value
+    def addQuery(self, *args):
+        if(len(args) == 2):
+            key = args[0]
+            value = args[1]
+            if self.query_data['sysparm_query'] == "":
+                self.query_data['sysparm_query'] += key +"=" +value
+            else:
+                self.query_data['sysparm_query'] += "^"+key +"=" +value
 
-    def addQuery(self, key, operator, value=""):
-
-        if self.query_data['sysparm_query'] == "":
-            self.query_data['sysparm_query'] +=  key + operator + value
         else:
-            self.query_data['sysparm_query'] += "^" + key + operator + value
+            key = args[0]
+            operator = args[1]
+            value = args[2]
+            if self.query_data['sysparm_query'] == "":
+                self.query_data['sysparm_query'] +=  key + operator + value
+            else:
+                self.query_data['sysparm_query'] += "^" + key + operator + valu
 
     def addEncodedQuery(self, queryString):
         if self.query_data['sysparm_query'] == "":
@@ -147,6 +166,8 @@ class GlideRecord:
         print(req.status_code)
         print(req.content)
 
+    def initialize(self):
+        self.obj = {}
         
     def insert(self):
         data = json.dumps(self.obj)
