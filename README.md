@@ -16,7 +16,7 @@
   
 <h4>Seguem alguns exemplos de como utilizar as funções:</h4>
   
-<p>Lendo registros de uma tabela</p>
+Lendo registros de uma tabela
   
   
 ```python
@@ -35,4 +35,5 @@ while gr.next():
     print(gr.number)
 
 ```
+</p>
   
